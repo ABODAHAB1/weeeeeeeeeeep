@@ -57,13 +57,14 @@ body{
 }
 .tab.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(0,152,234,.35)}
 
-.mainSwiper{width:100%;.mainSwiper{
+..mainSwiper{
+  width:100%;
   height:auto !important;
   min-height:100vh;
-}}
+  overflow:visible !important;
+}mainSwiper{width:100%;height:calc(100vh - 71px - 60px - 50px)}
 .slide{
-  padding:18px;
-  overflow:visible;
+  padding:18px;overflow-y:auto;
 }
 .section-title{font-size:20px;font-weight:900;margin-bottom:14px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -242,7 +243,9 @@ body{
 .flash-down{animation:flashDown .8s ease}
 @keyframes flashUp{0%{color:var(--up)}100%{color:var(--text)}}
 @keyframes flashDown{0%{color:var(--down)}100%{color:var(--text)}}
-html, body{
+.swiper-wrapper{
+  display:flex !important;
+  flex-direction:column !important;
+  transform:none !important;
   height:auto !important;
-  overflow-y:auto !important;
 }
