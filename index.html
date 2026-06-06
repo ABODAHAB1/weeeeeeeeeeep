@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="موقع التون - أسعار TON المباشرة، حاسبة ذكية، تحليل، أخبار، ورسم بياني لحظي." />
+<meta name="keywords" content="TON, تون, تونكوين, سعر تون, حاسبة تون, تحليل تون" />
+<meta name="theme-color" content="#0b1220" />
+<title>موقع التون | أسعار وتحليل TON المباشر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">💎</div>
+    <div>
+      <h1>موقع تحليل للتون</h1>
+      <p class="muted">تحديث لحظي لبيانات TON</p>
+    </div>
+  </div>
+  <div class="live-dot"><span></span> مباشر</div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-i="0">الرئيسية</button>
+  <button class="tab" data-i="1">الحاسبة</button>
+  <button class="tab" data-i="2">السيولة</button>
+  <button class="tab" data-i="3">المستثمرون</button>
+  <button class="tab" data-i="4">التحليل</button>
+  <button class="tab" data-i="5">الرسم البياني</button>
+  <button class="tab" data-i="6">الأخبار</button>
+  <button class="tab" data-i="7">التنبيهات</button>
+</nav>
+
+<div class="swiper mainSwiper">
+  <div class="swiper-wrapper">
+
+    <!-- 1. الرئيسية -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">نظرة عامة على TON</h2>
+      <div class="grid">
+        <div class="card accent"><span class="label">سعر TON بالدولار</span><span class="value" id="priceUsd">—</span></div>
+        <div class="card"><span class="label">سعر TON بالجنيه المصري</span><span class="value" id="priceEgp">—</span></div>
+        <div class="card"><span class="label">التغير خلال 24س</span><span class="value" id="change24">—</span></div>
+        <div class="card"><span class="label">حجم التداول 24س</span><span class="value" id="volume">—</span></div>
+        <div class="card"><span class="label">القيمة السوقية</span><span class="value" id="mcap">—</span></div>
+        <div class="card"><span class="label">أعلى سعر 24س</span><span class="value" id="high24">—</span></div>
+        <div class="card"><span class="label">أقل سعر 24س</span><span class="value" id="low24">—</span></div>
+        <div class="card"><span class="label">عدد الحائزين (تقريبي)</span><span class="value" id="holders">—</span></div>
+      </div>
+    </section>
+
+    <!-- 2. الحاسبة -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">حاسبة TON الذكية</h2>
+      <div class="calc card-lg">
+        <label class="calc-label" for="tonAmount">أدخل كمية TON</label>
+        <input id="tonAmount" type="number" min="0" step="any" placeholder="مثال: 100" value="1" inputmode="decimal" />
+        <div class="quick">
+          <button data-q="1">1</button>
+          <button data-q="10">10</button>
+          <button data-q="100">100</button>
+          <button data-q="500">500</button>
+          <button data-q="1000">1000</button>
+        </div>
+        <div class="calc-results">
+          <div class="res-box">
+            <span class="res-label">القيمة بالدولار الأمريكي</span>
+            <span class="res-value" id="resUsd">— USD</span>
+          </div>
+          <div class="res-box">
+            <span class="res-label">القيمة بالجنيه المصري</span>
+            <span class="res-value" id="resEgp">— EGP</span>
+          </div>
+        </div>
+        <p class="muted small">يتم التحديث تلقائيًا حسب آخر سعر مباشر.</p>
+      </div>
+    </section>
+
+    <!-- 3. السيولة -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">حركة الأموال والضخ</h2>
+      <div class="grid">
+        <div class="card"><span class="label">السيولة الداخلة</span><span class="value up" id="inflow">—</span></div>
+        <div class="card"><span class="label">السيولة الخارجة</span><span class="value down" id="outflow">—</span></div>
+        <div class="card"><span class="label">صافي التدفق</span><span class="value" id="netflow">—</span></div>
+        <div class="card"><span class="label">نشاط المحافظ الكبيرة</span><span class="value" id="whales">—</span></div>
+      </div>
+      <div class="card-lg" id="flowAlert">جاري تحليل تحركات السيولة...</div>
+    </section>
+
+    <!-- 4. المستثمرون -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">المستثمرون</h2>
+      <div class="grid">
+        <div class="card"><span class="label">المحافظ النشطة</span><span class="value" id="activeWallets">—</span></div>
+        <div class="card"><span class="label">عدد الحائزين</span><span class="value" id="holders2">—</span></div>
+        <div class="card"><span class="label">معدل النمو اليومي</span><span class="value up" id="growth">—</span></div>
+        <div class="card"><span class="label">التغير خلال 24س</span><span class="value" id="holdersDelta">—</span></div>
+      </div>
+    </section>
+
+    <!-- 5. التحليل -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">التحليل الذكي</h2>
+      <div class="card-lg analysis">
+        <div class="signal" id="signal">إشارة محايدة</div>
+        <div class="bars">
+          <div class="bar"><span>احتمال الصعود</span><div class="track"><div class="fill up" id="upBar"></div></div><b id="upPct">—</b></div>
+          <div class="bar"><span>احتمال الهبوط</span><div class="track"><div class="fill down" id="downBar"></div></div><b id="downPct">—</b></div>
+        </div>
+        <p id="analysisText" class="muted">يتم حساب التحليل بناءً على حركة السعر والحجم خلال 24 ساعة.</p>
+      </div>
+    </section>
+
+    <!-- 6. الرسم البياني -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">الرسم البياني المباشر</h2>
+      <div class="chart-wrap card-lg">
+        <div id="tv_chart"></div>
+      </div>
+    </section>
+
+    <!-- 7. الأخبار -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">آخر أخبار TON</h2>
+      <div class="news-bar">
+        <div class="news-stat">
+          <span class="news-stat-label">سعر TON الآن</span>
+          <span class="news-stat-value" id="newsPrice">—</span>
+        </div>
+        <div class="news-stat">
+          <span class="news-stat-label">آخر تحديث للأخبار</span>
+          <span class="news-stat-value" id="newsUpdated">—</span>
+        </div>
+        <button class="refresh-btn" id="refreshNews" title="تحديث الآن">🔄</button>
+      </div>
+      <button class="source-btn" id="openSources">تحقق من المصادر الموثوقة 🔗</button>
+      <div id="news" class="news-list">جاري تحميل الأخبار...</div>
+      <p class="muted small news-foot">يتم تحديث الأخبار تلقائيًا كل دقيقة من مصادر موثوقة ✅</p>
+    </section>
+
+    <!-- 8. التنبيهات -->
+    <section class="swiper-slide slide">
+      <h2 class="section-title">التنبيهات</h2>
+      <div id="alerts" class="alerts">لا توجد تنبيهات حالياً.</div>
+    </section>
+
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+
+<footer class="foot">
+  <span>© موقع التون — جميع الحقوق محفوظة</span>
+  <a class="dev-link" href="https://t.me/z_o_w" target="_blank" rel="noopener">تواصل مع المطور 💬</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
